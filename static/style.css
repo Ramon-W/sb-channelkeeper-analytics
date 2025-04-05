@@ -1,5 +1,5 @@
-body { 
-  background-image: url('/static/images/bg_pattern.jpg'); 
+body {
+  background-image: url("/static/images/bg_pattern.jpg");
   background-repeat: repeat;
 }
 .embed {
@@ -7,7 +7,7 @@ body {
 }
 .modal-title {
   text-align: center;
-  color: rgb(243,119,36);
+  color: rgb(243, 119, 36);
 }
 .modal-body {
   color: grey;
@@ -18,7 +18,7 @@ body {
 #navbar {
   font-family: "Verdana", "Trebuchet MS", Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 15px;  
+  font-size: 15px;
   position: absolute;
   right: 100px;
   top: 63px;
@@ -39,8 +39,8 @@ body {
 }
 
 #header {
-  padding: 15px; 
-  width: 100%; 
+  padding: 15px;
+  width: 100%;
   border-bottom: 1px solid grey;
   background-color: white;
 }
@@ -105,7 +105,7 @@ body {
 }
 .switcher input {
   -webkit-appearance: none;
-  -moz-appearance:    none;
+  -moz-appearance: none;
   appearance: none;
   border-bottom: 1px solid grey;
   border-right: 1px solid grey;
@@ -117,9 +117,10 @@ body {
   background-color: #1e1e1e;
   outline: none;
   font-weight: bold;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
 }
-.switcher input:before, .switcher input:after {
+.switcher input:before,
+.switcher input:after {
   z-index: 2;
   position: absolute;
   top: 50%;
@@ -128,12 +129,12 @@ body {
 }
 .switcher input:before {
   left: 60px;
-  content: 'Cleanups';
+  content: "Cleanups";
   text-decoration: underline;
 }
 .switcher input:after {
   right: 60px;
-  content: 'Report Trash';
+  content: "Report Trash";
   text-decoration: underline;
 }
 .switcher label {
@@ -193,14 +194,14 @@ body {
   height: 15px;
   width: 15px;
   display: inline-block;
-  background-color: #4285F4;
+  background-color: #4285f4;
 }
 #red-square {
   border: 1px solid black;
   height: 15px;
   display: inline-block;
   width: 15px;
-  background-color: #DB4437;
+  background-color: #db4437;
 }
 #blue-text {
   display: inline-block;
@@ -230,7 +231,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 .content {
@@ -240,7 +241,7 @@ input[type=number] {
   text-align: center;
 }
 #report-limit {
-  color: red;	
+  color: red;
 }
 #resolve-date {
   border: 1px solid lightgrey;
@@ -248,7 +249,8 @@ input[type=number] {
   border-radius: 5px;
   padding-left: 10px;
 }
-#report-switch, #report-switch-embed {
+#report-switch,
+#report-switch-embed {
   margin-top: 10px;
 }
 #resolve-switch {
@@ -288,7 +290,8 @@ footer {
 .first-row-embed {
   height: 60px;
 }
-.rankings-bottom {margin: 10px;
+.rankings-bottom {
+  margin: 10px;
   margin-left: 25px;
   margin-right: 25px;
   height: 40px;
@@ -308,18 +311,26 @@ footer {
   z-index: -1;
   top: 300px;
   min-height: 300px;
-  background: rgb(243,119,36);
-  background: linear-gradient(0deg, rgba(243,119,36,1) 0%, rgba(252,180,44,1) 100%);
+  background: rgb(243, 119, 36);
+  background: linear-gradient(
+    0deg,
+    rgba(243, 119, 36, 1) 0%,
+    rgba(252, 180, 44, 1) 100%
+  );
 }
 .top {
   margin: auto;
   margin-top: 20px;
 }
-.gold, .silver, .bronze {
+.gold,
+.silver,
+.bronze {
   width: 90px;
 }
-.second, .first, .third {
- text-align: center;
+.second,
+.first,
+.third {
+  text-align: center;
 }
 .second {
   padding-right: 10px;
@@ -334,7 +345,7 @@ footer {
   padding: 8px;
   box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;
   padding-top: 0px;
-  width: 110px; 
+  width: 110px;
   min-height: 270px;
   padding-bottom: 0px;
 }
@@ -351,10 +362,10 @@ footer {
 #chart {
   width: 100%;
   color: white;
-  overflow: hidden; 
-  text-overflow: ellipsis; 
+  overflow: hidden;
+  text-overflow: ellipsis;
   word-wrap: break-word;
-  table-layout:fixed;
+  table-layout: fixed;
   border: 1px solid white;
   background-color: #7bbfc8;
 }
@@ -365,10 +376,10 @@ footer {
   border-bottom: none;
   padding: 15px;
   color: white;
-  font-weight:bold;
+  font-weight: bold;
   background-color: #7bbfc8;
 }
-.chart-headings{
+.chart-headings {
   text-align: center;
   padding: 5px;
   border: 1px solid white;
@@ -382,16 +393,28 @@ footer {
   padding-left: 10px;
 }
 #gradient-one {
-  background: rgb(243,119,36);
-  background: linear-gradient(90deg, rgba(243,119,36,1) 0%, rgba(246,139,39,1) 100%);
+  background: rgb(243, 119, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(243, 119, 36, 1) 0%,
+    rgba(246, 139, 39, 1) 100%
+  );
 }
 #gradient-two {
-  background: rgb(246,139,39);
-  background: linear-gradient(90deg, rgba(246,139,39,1) 0%, rgba(249,159,41,1) 100%);
+  background: rgb(246, 139, 39);
+  background: linear-gradient(
+    90deg,
+    rgba(246, 139, 39, 1) 0%,
+    rgba(249, 159, 41, 1) 100%
+  );
 }
 #gradient-three {
-  background: rgb(249,159,41);
-  background: linear-gradient(90deg, rgba(249,159,41,1) 0%, rgba(252,180,44,1) 100%);
+  background: rgb(249, 159, 41);
+  background: linear-gradient(
+    90deg,
+    rgba(249, 159, 41, 1) 0%,
+    rgba(252, 180, 44, 1) 100%
+  );
 }
 .cell {
   padding: 5px 0px 10px 0px;
@@ -406,22 +429,8 @@ footer {
   font-size: 12px;
   padding-right: 5px;
 }
-#chartContainer {
-  margin: auto;
-  margin-top: 25px;
-  border: 1px solid grey;
-}
-#chartContainer2 {
-  margin: auto;
-  margin-top: 25px;
-  border: 1px solid grey;
-}
-#chartContainer3 {
-  margin: auto;
-  margin-top: 25px;
-  border: 1px solid grey;
-}
-#chartContainer4 {
+#histogramContainer,
+#dotChartContainer {
   margin: auto;
   margin-top: 25px;
   border: 1px solid grey;
@@ -488,6 +497,10 @@ footer {
   z-index: -1;
   top: 300px;
   min-height: 300px;
-  background: rgb(243,119,36);
-  background: linear-gradient(0deg, rgba(243,119,36,1) 0%, rgba(252,180,44,1) 100%);
+  background: rgb(243, 119, 36);
+  background: linear-gradient(
+    0deg,
+    rgba(243, 119, 36, 1) 0%,
+    rgba(252, 180, 44, 1) 100%
+  );
 }

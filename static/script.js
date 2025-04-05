@@ -1,132 +1,126 @@
-$(document).ready(function() { 
+$(document).ready(function () {
   $("#reports").hide();
   $("#resolve").hide();
-  $("#yearly").hide();
-  $("#yearly2").hide();
-  $(".year-switch").hide();
+  $("#monthly").hide();
+  $("#monthly2").hide();
+  $(".month-switch").hide();
   $("#resolve-switch").hide();
   $("#map-reports").hide();
-  $(".Month").change(function() {
+  $(".Month").change(function () {
     if ($(".Month:checked").length == $(".Month").length) {
-      $("#map-cleanups").replaceWith("<iframe id='map-cleanups' src='https://www.geosheets.com/map/s:DJj8Kv6R/cleanups/embed' class='map'></iframe>")
-
-    }
-    else if ($(".Month:checked").length === 0) {
-      $("#map-cleanups").replaceWith("<iframe id='map-cleanups' src='https://www.geosheets.com/map/s:DJj8Kv6R/cleanups?filters=%7B%22Month%22%3A%5B%22None%22%5D%2C%22a.%20Name%22%3A%22_all_%22%2C%22b.%20People%22%3A%22_all_%22%2C%22c.%20Date%22%3A%22_all_%22%2C%22d.%20Place(s)%22%3A%22_all_%22%2C%22e.%20Weight%20(lbs)%22%3A%22_all_%22%2C%22f.%20Bag(s)%22%3A%22_all_%22%2C%22g.%20Time%20(hrs)%22%3A%22_all_%22%7D' class='map'></iframe>")
-    }
-    else {
-      var baseLink = "https://www.geosheets.com/map/s:DJj8Kv6R/cleanups?filters=%7B%22Month%22%3A%5B"
+      $("#map-cleanups").replaceWith(
+        "<iframe id='map-cleanups' src='https://www.geosheets.com/map/s:DJj8Kv6R/cleanups/embed' class='map'></iframe>"
+      );
+    } else if ($(".Month:checked").length === 0) {
+      $("#map-cleanups").replaceWith(
+        "<iframe id='map-cleanups' src='https://www.geosheets.com/map/s:DJj8Kv6R/cleanups?filters=%7B%22Month%22%3A%5B%22None%22%5D%2C%22a.%20Name%22%3A%22_all_%22%2C%22b.%20People%22%3A%22_all_%22%2C%22c.%20Date%22%3A%22_all_%22%2C%22d.%20Place(s)%22%3A%22_all_%22%2C%22e.%20Weight%20(lbs)%22%3A%22_all_%22%2C%22f.%20Bag(s)%22%3A%22_all_%22%2C%22g.%20Time%20(hrs)%22%3A%22_all_%22%7D' class='map'></iframe>"
+      );
+    } else {
+      var baseLink =
+        "https://www.geosheets.com/map/s:DJj8Kv6R/cleanups?filters=%7B%22Month%22%3A%5B";
       var first = true;
       if ($("#January").is(":checked")) {
-        baseLink += "%22January%22"
+        baseLink += "%22January%22";
         first = false;
       }
       if ($("#February").is(":checked")) {
         if (first == true) {
-          baseLink += "%22February%22"
+          baseLink += "%22February%22";
           first = false;
-        }
-        else {
-          baseLink += "%2C%22February%22"
+        } else {
+          baseLink += "%2C%22February%22";
         }
       }
       if ($("#March").is(":checked")) {
         if (first == true) {
-          baseLink += "%22March%22"
+          baseLink += "%22March%22";
           first = false;
-        }
-        else {
-          baseLink += "%2C%22March%22"
+        } else {
+          baseLink += "%2C%22March%22";
         }
       }
       if ($("#April").is(":checked")) {
         if (first == true) {
-          baseLink += "%22April%22"
+          baseLink += "%22April%22";
           first = false;
-        }
-        else {
-          baseLink += "%2C%22April%22"
+        } else {
+          baseLink += "%2C%22April%22";
         }
       }
       if ($("#May").is(":checked")) {
         if (first == true) {
-          baseLink += "%22May%22"
+          baseLink += "%22May%22";
           first = false;
-        }
-        else {
-          baseLink += "%2C%22May%22"
+        } else {
+          baseLink += "%2C%22May%22";
         }
       }
       if ($("#June").is(":checked")) {
         if (first == true) {
-          baseLink += "%22June%22"
+          baseLink += "%22June%22";
           first = false;
-        }
-        else {
-          baseLink += "%2C%22June%22"
+        } else {
+          baseLink += "%2C%22June%22";
         }
       }
       if ($("#July").is(":checked")) {
         if (first == true) {
-          baseLink += "%22July%22"
+          baseLink += "%22July%22";
           first = false;
-        }
-        else {
-          baseLink += "%2C%22July%22"
+        } else {
+          baseLink += "%2C%22July%22";
         }
       }
       if ($("#August").is(":checked")) {
         if (first == true) {
-          baseLink += "%22August%22"
+          baseLink += "%22August%22";
           first = false;
-        }
-        else {
-          baseLink += "%2C%22August%22"
+        } else {
+          baseLink += "%2C%22August%22";
         }
       }
       if ($("#September").is(":checked")) {
         if (first == true) {
-          baseLink += "%22September%22"
+          baseLink += "%22September%22";
           first = false;
-        }
-        else {
-          baseLink += "%2C%22September%22"
+        } else {
+          baseLink += "%2C%22September%22";
         }
       }
       if ($("#October").is(":checked")) {
         if (first == true) {
-          baseLink += "%22October%22"
+          baseLink += "%22October%22";
           first = false;
-        }
-        else {
-          baseLink += "%2C%22October%22"
+        } else {
+          baseLink += "%2C%22October%22";
         }
       }
       if ($("#November").is(":checked")) {
         if (first == true) {
-          baseLink += "%22November%22"
+          baseLink += "%22November%22";
           first = false;
-        }
-        else {
-          baseLink += "%2C%22November%22"
+        } else {
+          baseLink += "%2C%22November%22";
         }
       }
       if ($("#December").is(":checked")) {
         if (first == true) {
-          baseLink += "%22December%22"
+          baseLink += "%22December%22";
           first = false;
-        }
-        else {
-          baseLink += "%2C%22December%22"
+        } else {
+          baseLink += "%2C%22December%22";
         }
       }
-      baseLink += "%5D%2C%22a.%20Name%22%3A%22_all_%22%2C%22b.%20People%22%3A%22_all_%22%2C%22c.%20Date%22%3A%22_all_%22%2C%22d.%20Place(s)%22%3A%22_all_%22%2C%22e.%20Weight%20(lbs)%22%3A%22_all_%22%2C%22f.%20Bag(s)%22%3A%22_all_%22%2C%22g.%20Time%20(hrs)%22%3A%22_all_%22%7D"
-      $("#map-cleanups").replaceWith("<iframe id='map-cleanups' src='" + baseLink + "' class='map'></iframe>")
+      baseLink +=
+        "%5D%2C%22a.%20Name%22%3A%22_all_%22%2C%22b.%20People%22%3A%22_all_%22%2C%22c.%20Date%22%3A%22_all_%22%2C%22d.%20Place(s)%22%3A%22_all_%22%2C%22e.%20Weight%20(lbs)%22%3A%22_all_%22%2C%22f.%20Bag(s)%22%3A%22_all_%22%2C%22g.%20Time%20(hrs)%22%3A%22_all_%22%7D";
+      $("#map-cleanups").replaceWith(
+        "<iframe id='map-cleanups' src='" + baseLink + "' class='map'></iframe>"
+      );
     }
   });
-  $("#switcher-1").change(function() {
-    if ($("#switcher-1").is(':checked')) {
-      $("#cleanups").show();  // checked
+  $("#switcher-1").change(function () {
+    if ($("#switcher-1").is(":checked")) {
+      $("#cleanups").show(); // checked
       $("#reports").hide();
       $("#map-reports").hide();
       $("#map-cleanups").show();
@@ -135,9 +129,8 @@ $(document).ready(function() {
       $("#legend-main").show();
       $("#legend-main-embed").show();
       $("#credit").show();
-    }
-    else {
-      $("#cleanups").hide();  // unchecked
+    } else {
+      $("#cleanups").hide(); // unchecked
       $("#reports").show();
       $("#map-reports").show();
       $("#map-cleanups").hide();
@@ -148,7 +141,7 @@ $(document).ready(function() {
       $("#credit").hide();
     }
   });
-  $(".month-switch").click(function() {
+  $(".month-switch").click(function () {
     $("#monthly").hide();
     $("#monthly2").hide();
     $(".month-switch").hide();
@@ -156,7 +149,7 @@ $(document).ready(function() {
     $("#yearly2").show();
     $(".year-switch").show();
   });
-  $(".year-switch").click(function() {
+  $(".year-switch").click(function () {
     $("#monthly").show();
     $("#monthly2").show();
     $(".month-switch").show();
@@ -164,7 +157,7 @@ $(document).ready(function() {
     $("#yearly2").hide();
     $(".year-switch").hide();
   });
-  $("#report-switch").click(function() {
+  $("#report-switch").click(function () {
     document.getElementById("replaceable").innerHTML = "Resolve a Location";
     $("#report").hide();
     $("#report-limit").hide();
@@ -172,7 +165,7 @@ $(document).ready(function() {
     $("#resolve").show();
     $("#resolve-switch").show();
   });
-  $("#resolve-switch").click(function() {
+  $("#resolve-switch").click(function () {
     document.getElementById("replaceable").innerHTML = "Trash Report";
     $("#report").show();
     $("#report-limit").show();

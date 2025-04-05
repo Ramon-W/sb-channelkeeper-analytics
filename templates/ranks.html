@@ -1,74 +1,83 @@
-{% extends "layout.html" %}
-
-{% set page = "ranks" %}
-
-{% block title %}
-Rankings
-{% endblock %}
-
-{% block content %}
+{% extends "layout.html" %} {% set page = "ranks" %} {% block title %} Rankings
+{% endblock %} {% block content %}
 <div id="aligning-buttons">
-  <button type="button" class="btn btn-primary button-scoreboard month-switch">Monthly Scoreboard <img src="/static/images/clickme.png" style="width:15px;height:15px"></button>
-  <button type="button" class="btn btn-primary button-scoreboard year-switch">All Time Scoreboard</button>
+  <button type="button" class="btn btn-primary button-scoreboard month-switch">
+    Monthly Scoreboard
+  </button>
+  <button type="button" class="btn btn-primary button-scoreboard year-switch">
+    All Time Scoreboard
+  </button>
 </div>
 
 <table class="top" id="monthly">
   <tr>
     <td class="second">
       <div class="plate">
-        <img src="/static/images/silver.png" alt="silver" class="silver"> <!-- Source for Medal Images: https://www.google.com/search?q=medals+bronze+gold+silver&rlz=1C5CHFA_enUS831US831&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiR3ISPnq_yAhUDJTQIHSZRAoQQ_AUoAnoECAEQBA&biw=1920&bih=812#imgrc=d-5IeE4vIQBRuM -->
-        <p class="ranking">{{ second }}<br><b>{{ second_score }}</b></p>
+        <img src="/static/images/silver.png" alt="silver" class="silver" />
+        <!-- Source for Medal Images: https://www.google.com/search?q=medals+bronze+gold+silver&rlz=1C5CHFA_enUS831US831&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiR3ISPnq_yAhUDJTQIHSZRAoQQ_AUoAnoECAEQBA&biw=1920&bih=812#imgrc=d-5IeE4vIQBRuM -->
+        <p class="ranking">
+          {{ second_place_month }}<br /><b>{{ second_score_month }}</b>
+        </p>
       </div>
     </td>
     <td class="first">
       <div class="plate">
-        <img src="/static/images/gold.png" alt="gold" class="gold">
-        <p class="ranking">{{ first }}<br><b>{{ first_score }}</b></p>
+        <img src="/static/images/gold.png" alt="gold" class="gold" />
+        <p class="ranking">
+          {{ first_place_month }}<br /><b>{{ first_score_month }}</b>
+        </p>
       </div>
     </td>
     <td class="third">
       <div class="plate">
-        <img src="/static/images/bronze.png" alt="bronze" class="bronze">
-        <p class="ranking">{{ third }}<br><b>{{ third_score }}</b></p>
+        <img src="/static/images/bronze.png" alt="bronze" class="bronze" />
+        <p class="ranking">
+          {{ third_place_month }}<br /><b>{{ third_score_month }}</b>
+        </p>
       </div>
     </td>
   </tr>
 </table>
 <table class="bottom" id="monthly2">
   <tr class="first-row">
-    <td>
-    </td>
+    <td></td>
   </tr>
-  {{ rankings_bottom }}
+  {{ scoreboard_month_html }}
 </table>
 <!-- Yearly Table -->
-<table class="top" id="yearly"> 
+<table class="top" id="yearly">
   <tr>
     <td class="second">
       <div class="plate">
-        <img src="/static/images/silver.png" alt="silver" class="silver"> <!-- Source for Medal Images: https://www.google.com/search?q=medals+bronze+gold+silver&rlz=1C5CHFA_enUS831US831&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiR3ISPnq_yAhUDJTQIHSZRAoQQ_AUoAnoECAEQBA&biw=1920&bih=812#imgrc=d-5IeE4vIQBRuM -->
-        <p class="ranking">{{ second_year }}<br><b>{{ second_score_year }}</b></p>
+        <img src="/static/images/silver.png" alt="silver" class="silver" />
+        <!-- Source for Medal Images: https://www.google.com/search?q=medals+bronze+gold+silver&rlz=1C5CHFA_enUS831US831&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiR3ISPnq_yAhUDJTQIHSZRAoQQ_AUoAnoECAEQBA&biw=1920&bih=812#imgrc=d-5IeE4vIQBRuM -->
+        <p class="ranking">
+          {{ second_place_total }}<br /><b>{{ second_score_total }}</b>
+        </p>
       </div>
     </td>
     <td class="first">
       <div class="plate">
-        <img src="/static/images/gold.png" alt="gold" class="gold">
-        <p class="ranking">{{ first_year }}<br><b>{{ first_score_year }}</b></p>
+        <img src="/static/images/gold.png" alt="gold" class="gold" />
+        <p class="ranking">
+          {{ first_place_total }}<br /><b>{{ first_score_total }}</b>
+        </p>
       </div>
     </td>
     <td class="third">
       <div class="plate">
-        <img src="/static/images/bronze.png" alt="bronze" class="bronze">
-        <p class="ranking">{{ third_year }}<br><b>{{ third_score_year }}</b></p>
+        <img src="/static/images/bronze.png" alt="bronze" class="bronze" />
+        <p class="ranking">
+          {{ third_place_total }}<br /><b>{{ third_score_total }}</b>
+        </p>
       </div>
     </td>
   </tr>
 </table>
 <table class="bottom" id="yearly2">
   <tr class="first-row">
-    <td>
-    </td>
+    <td></td>
   </tr>
-  {{ rankings_bottom_year }}
+  {{ scoreboard_total_html }}
 </table>
 {% endblock %}

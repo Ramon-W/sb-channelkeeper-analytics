@@ -1,25 +1,22 @@
-{% extends "layout.html" %}
-
-{% set page = "maps" %}
-
-{% block title %}
-Maps
-{% endblock %}
-
-{% block script %}
-{{ returner }}
-<!--<script>
-  $(document).ready(function() { 
-  $('#myModal').modal('show');
-});
-  </script>-->
-{% endblock %}
-{% block content %}
+{% extends "layout.html" %} {% set page = "maps" %} {% block title %} Maps {%
+endblock %} {% block script %} {{ returner }}
+<script>
+  $(document).ready(function () {
+    $("#myModal").modal("show");
+  });
+</script>
+{% endblock %} {% block content %}
 <div id="map-overlay">
-  <iframe id="map-cleanups" scrolling="no" src="https://gmcdonald-sfg.github.io/sbck-watershed-brigade/index.html#__hrp=eyJtdXRlciI6ZmFsc2UsIndhaXRGb3JEb2N1bWVudEJvZHkiOnRydWUsIndhaXRGb3JEb2N1bWVudFJlYWR5IjpmYWxzZSwibm9QYXRjaGVzIjp0cnVlLCJ3aWR0aCI6IjEwMCUiLCJoZWlnaHQiOiIxMDAlIiwiZW5naW5lTmFtZSI6ImVuZ2luZS0wLjEuMCIsImZyYW1lTmFtZSI6ImVuZ2luZS0wLjEuMDoxNzI4NDIwMDc2In0="></iframe>
-  <div id="map-reports">Unfortunately, we no longer display reports on this map.</div>
+  <iframe
+    id="map-cleanups"
+    scrolling="no"
+    src="https://gmcdonald-sfg.github.io/sbck-watershed-brigade/index.html#__hrp=eyJtdXRlciI6ZmFsc2UsIndhaXRGb3JEb2N1bWVudEJvZHkiOnRydWUsIndhaXRGb3JEb2N1bWVudFJlYWR5IjpmYWxzZSwibm9QYXRjaGVzIjp0cnVlLCJ3aWR0aCI6IjEwMCUiLCJoZWlnaHQiOiIxMDAlIiwiZW5naW5lTmFtZSI6ImVuZ2luZS0wLjEuMCIsImZyYW1lTmFtZSI6ImVuZ2luZS0wLjEuMDoxNzI4NDIwMDc2In0="
+  ></iframe>
+  <div id="map-reports">
+    Unfortunately, we no longer display reports on this map.
+  </div>
   <span class="switcher switcher-1 no-select">
-    <input type="checkbox" id="switcher-1" class="no-select" checked>
+    <input type="checkbox" id="switcher-1" class="no-select" checked />
     <label for="switcher-1" class="no-select"></label>
   </span>
 </div>
@@ -27,7 +24,7 @@ Maps
   <div class="heading-two">
     <h3 class="heading-title">Cleanups</h3>
   </div>
- <!--<div class="content">
+  <!--<div class="content">
     {{ checkboxes }}
   </div>-->
 </div>
@@ -37,9 +34,7 @@ Maps
   </div>
   <div class="content">
     <form action="/report" class="form-inline" id="report" method="POST">
-      <div class="form-group">
-        {{ location_question }}
-      </div>
+      <div class="form-group">{{ location_question }}</div>
       <div class="form-group">
         <label for="trash">Amount of Trash:</label>
         <select class="form-control" id="trash" name="trash">
@@ -50,14 +45,21 @@ Maps
       </div>
       <div class="form-group">
         <label for="comment">Description:</label>
-        <input type="text" class="form-control" id="comment" maxlength="1000" name="comment" required>
+        <input
+          type="text"
+          class="form-control"
+          id="comment"
+          maxlength="1000"
+          name="comment"
+          required
+        />
       </div>
       <button type="submit" class="btn btn-default" {{ submit }}>Submit</button>
-      <input type="hidden" name="embed" value="false">
+      <input type="hidden" name="embed" value="false" />
     </form>
     {{ report_limit }}
-    
-<!--     <form action="/resolve" class="form-inline" id="resolve" method="POST">
+
+    <!--     <form action="/resolve" class="form-inline" id="resolve" method="POST">
       <div class="form-group">
         <label for="resolve-name">Name:</label>
         <input type="text" class="form-control" id="resolve-name" maxlength="120" name="resolve-name" required>
@@ -79,30 +81,60 @@ Maps
       <button type="submit" class="btn btn-default">Submit</button>
       <input type="hidden" name="embed" value="false">
     </form> -->
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSehM8lVXrqqBI8kfVq8XYNuhe1EQypdo26jKx0edlEH6YmF2Q/viewform" target="_blank" class="btn btn-warning" id="report-switch-embed">Resolve a Location</a>
-<!--     <button type="button" class="btn btn-warning" id="resolve-switch">Report Trash</button> -->
+    <a
+      href="https://docs.google.com/forms/d/e/1FAIpQLSehM8lVXrqqBI8kfVq8XYNuhe1EQypdo26jKx0edlEH6YmF2Q/viewform"
+      target="_blank"
+      class="btn btn-warning"
+      id="report-switch-embed"
+      >Resolve a Location</a
+    >
+    <!--     <button type="button" class="btn btn-warning" id="resolve-switch">Report Trash</button> -->
   </div>
 </div>
 <footer>
-  <p id="credit">Data is sourced from Santa Barbara Channelkeeper's Watershed Brigade. Join the effort to see your own data being added!</p>
+  <p id="credit">
+    Data is sourced from Santa Barbara Channelkeeper's Watershed Brigade. Join
+    the effort to see your own data being added!
+  </p>
 </footer>
 <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" action="/modal_hide">&times;</button>
-          <h4 class="modal-title">Website Information</h4>
-        </div>
-        <div class="modal-body">
-          <p>&nbsp;&nbsp;&nbsp;<b>Welcome!</b> This is a webapp designed for the Santa Barbara Channelkeepers, a non-profit organization. The Cleanups map shows locations that have been cleaned up by volunteers in the current year. The Report Trash map allows you to report areas of refuse and litter directly to the Watershed Brigade. The leaderboard on the Scoreboard tab shows the points each volunteer has for the current month and year.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" action="/modal_hide">Close</button>
-        </div>
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          action="/modal_hide"
+        >
+          &times;
+        </button>
+        <h4 class="modal-title">Website Information</h4>
       </div>
-      
+      <div class="modal-body">
+        <p>
+          &nbsp;&nbsp;&nbsp;<b>Welcome!</b> This is a webapp designed for Santa
+          Barbara Channelkeeper, a non-profit environmental organization. The
+          map on this page shows where cleanups have been conducted—click on
+          each marker to show more information. There is also the reports map,
+          which allows anyone to report locations of trash directly to the
+          Watershed Brigade. Finally, please check out the scoreboard and
+          statistics page for even more information about our cleanup efforts.
+          Thank you for visiting!
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-default"
+          data-dismiss="modal"
+          action="/modal_hide"
+        >
+          Close
+        </button>
+      </div>
     </div>
   </div>
+</div>
 {% endblock %}

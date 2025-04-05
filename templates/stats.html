@@ -1,264 +1,145 @@
-{% extends "layout.html" %}
-
-{% set page = "stats" %}
-
-{% block script %}
+{% extends "layout.html" %} {% set page = "stats" %} {% block script %}
 <script>
-window.onload = function () {
-var chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,
-	zoomEnabled: true,
-	title:{
-		text: "Weight of Trash Picked Up in Cleanups vs Total Time Spent",
-		fontSize: 30
-	},
-	axisX: {
-		title:"Time (hrs)",
-		titleFontSize: 20,
-		labelFontSize: 16,
-		minimum: 0
-	},
-	axisY:{
-		title: "Weight of Trash (lbs)",
-		includeZero: true,
-		titleFontSize: 20,
-		labelFontSize: 16,
-		minimum: 0
-	},
-        data: [ 
-		{{ chart }} 
-	]
-});
-chart.render();
-calculateTrendLine(chart);
-    function calculateTrendLine(chart){
-        const totalPoints = chart.data[0].dataPoints.concat({{ trend_line }});
-        var a, b, c, d, e, slope, yIntercept;
-        var xSum = 0, ySum = 0, xySum = 0, xSquare = 0, dpsLength = totalPoints.length;
-        for(var i = 0; i < dpsLength; i++)
-            xySum += (totalPoints[i].x * totalPoints[i].y);
-        a = xySum * dpsLength;
-        for(var i = 0; i < dpsLength; i++){
-            xSum += totalPoints[i].x;
-            ySum += totalPoints[i].y;
-        }
-        b = xSum * ySum;
-        for(var i = 0; i < dpsLength; i++)
-            xSquare += Math.pow(totalPoints[i].x, 2);
-        c = dpsLength * xSquare;
-        d = Math.pow(xSum, 2);
-        slope = (a-b)/(c-d);
-        e = slope * xSum;
-        yIntercept = (ySum - e) / dpsLength;
-        var startPoint = getTrendLinePoint(0.0, slope, yIntercept);
-        var endPoint = getTrendLinePoint({{ end_point }}, slope, yIntercept);
-        chart.addTo("data",{
-            type: "line", //Line series showing trend
-            markerSize: 0,
-            dataPoints: [startPoint, endPoint]
-        });
+  window.onload = function () {
+    const dotChart = new CanvasJS.Chart("dotChartContainer", {
+      animationEnabled: true,
+      zoomEnabled: true,
+      title: {
+        text: "Weight of Trash Picked Up in Cleanups vs Total Time Spent",
+        fontSize: 30,
+      },
+      axisX: {
+        title: "Time (hrs)",
+        titleFontSize: 20,
+        labelFontSize: 16,
+        minimum: 0,
+      },
+      axisY: {
+        title: "Weight of Trash (lbs)",
+        includeZero: true,
+        titleFontSize: 20,
+        labelFontSize: 16,
+        minimum: 0,
+      },
+      data: [{{ chart }}],
+    });
+    dotChart.render();
+    calculateTrendLine(dotChart);
+
+    function calculateTrendLine(chart) {
+      const totalPoints = chart.data[0].dataPoints.concat({{ trend_line }});
+      var a, b, c, d, e, slope, yIntercept;
+      var xSum = 0,
+        ySum = 0,
+        xySum = 0,
+        xSquare = 0,
+        dpsLength = totalPoints.length;
+      for (var i = 0; i < dpsLength; i++)
+        xySum += totalPoints[i].x * totalPoints[i].y;
+      a = xySum * dpsLength;
+      for (var i = 0; i < dpsLength; i++) {
+        xSum += totalPoints[i].x;
+        ySum += totalPoints[i].y;
+      }
+      b = xSum * ySum;
+      for (var i = 0; i < dpsLength; i++)
+        xSquare += Math.pow(totalPoints[i].x, 2);
+      c = dpsLength * xSquare;
+      d = Math.pow(xSum, 2);
+      slope = (a - b) / (c - d);
+      e = slope * xSum;
+      yIntercept = (ySum - e) / dpsLength;
+      var startPoint = getTrendLinePoint(0.0, slope, yIntercept);
+      var endPoint = getTrendLinePoint({{ end_point }}, slope, yIntercept);
+      chart.addTo("data", {
+        type: "line",
+        markerSize: 0,
+        dataPoints: [startPoint, endPoint],
+      });
     }
 
-var chart2 = new CanvasJS.Chart("chartContainer2", {
-	animationEnabled: true,
-	title:{
-		text: "Monthly Average Weight, Time, and # of People per Cleanup",
-		fontSize: 30
-	},	
-	axisY: {
-		title: "Quantity",
-		titleFontColor: "#4F81BC",
-		lineColor: "#4F81BC",
-		labelFontColor: "#4F81BC",
-		tickColor: "#4F81BC",
-		includeZero: true,
-		titleFontSize: 20,
-		labelFontSize: 16,
-		minimum: 0
-	},
-	toolTip: {
-		shared: true
-	},
-	legend: {
-		cursor:"pointer",
-		itemclick: toggleDataSeries
-	},
-	data: [{
-		type: "column",
-		name: "Weight (lbs)",
-		indexLabelFontSize: 16,
-		legendText: "Time (hrs)",
-		showInLegend: true, 
-		dataPoints:[
-			{{ histogram_weight }}
-		]
-	},
-	{
-		type: "column",	
-		name: "Time (hrs)",
-		indexLabelFontSize: 16,
-		legendText: "Person(s)",
-		showInLegend: true,
-		dataPoints:[
-			{{ histogram_time }}
-		]
-	},
-	{
-		type: "column",
-		name: "Person(s)",
-		indexLabelFontSize: 16,
-		legendText: "Weight (lbs)",
-		showInLegend: true, 
-		dataPoints:[
-			{{ histogram_persons }}
-		]
-	}]
-});
-chart2.render();
-function toggleDataSeries(e) {
-	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-		e.dataSeries.visible = false;
-	}
-	else {
-		e.dataSeries.visible = true;
-	}
-	chart2.render();
-}
-	
-var chart3 = new CanvasJS.Chart("chartContainer3", {
-	animationEnabled: true,
-	zoomEnabled: true,
-	title:{
-		text: "Weight of Trash Picked Up in Cleanups vs Total Time Spent (Solo)",
-		fontSize: 30
-	},
-	axisX: {
-		title:"Time (hrs)",
-		titleFontSize: 20,
-		labelFontSize: 16,
-		minimum: 0
-	},
-	axisY:{
-		title: "Weight of Trash (lbs)",
-		includeZero: true,
-		titleFontSize: 20,
-		labelFontSize: 16,
-		minimum: 0
-	},
-        data: [ 
-		{{ chart_individual }} 
-	]
-});
-chart3.render();
-calculateTrendLine3(chart3);
-    function calculateTrendLine3(chart3){
-        const totalPoints = chart3.data[0].dataPoints//.concat({{ trend_line_individual }});
-        var a, b, c, d, e, slope, yIntercept;
-        var xSum = 0, ySum = 0, xySum = 0, xSquare = 0, dpsLength = totalPoints.length;
-        for(var i = 0; i < dpsLength; i++)
-            xySum += (totalPoints[i].x * totalPoints[i].y);
-        a = xySum * dpsLength;
-        for(var i = 0; i < dpsLength; i++){
-            xSum += totalPoints[i].x;
-            ySum += totalPoints[i].y;
-        }
-        b = xSum * ySum;
-        for(var i = 0; i < dpsLength; i++)
-            xSquare += Math.pow(totalPoints[i].x, 2);
-        c = dpsLength * xSquare;
-        d = Math.pow(xSum, 2);
-        slope = (a-b)/(c-d);
-        e = slope * xSum;
-        yIntercept = (ySum - e) / dpsLength;
-        var startPoint = getTrendLinePoint(0.0, slope, yIntercept);
-        var endPoint = getTrendLinePoint(15.0, slope, yIntercept);
-        chart3.addTo("data",{
-            type: "line", //Line series showing trend
-            markerSize: 0,
-            dataPoints: [startPoint, endPoint]
-        });
-    }
+    const histogram = new CanvasJS.Chart("histogramContainer", {
+      animationEnabled: true,
+      title: {
+        text: "Monthly Average Weight, Time, and # of People per Cleanup",
+        fontSize: 30,
+      },
+      axisY: {
+        title: "Quantity",
+        titleFontColor: "#4F81BC",
+        lineColor: "#4F81BC",
+        labelFontColor: "#4F81BC",
+        tickColor: "#4F81BC",
+        includeZero: true,
+        titleFontSize: 20,
+        labelFontSize: 16,
+        minimum: 0,
+      },
+      toolTip: {
+        shared: true,
+      },
+      legend: {
+        cursor: "pointer",
+        itemclick: toggleDataSeries,
+      },
+      data: [
+        {
+          type: "column",
+          name: "Weight (lbs)",
+          indexLabelFontSize: 16,
+          legendText: "Time (hrs)",
+          showInLegend: true,
+          dataPoints: [{{ histogram_weight }}],
+        },
+        {
+          type: "column",
+          name: "Time (hrs)",
+          indexLabelFontSize: 16,
+          legendText: "Person(s)",
+          showInLegend: true,
+          dataPoints: [{{ histogram_time }}],
+        },
+        {
+          type: "column",
+          name: "Person(s)",
+          indexLabelFontSize: 16,
+          legendText: "Weight (lbs)",
+          showInLegend: true,
+          dataPoints: [{{ histogram_persons }}],
+        },
+      ],
+    });
+    histogram.render();
 
-var chart4 = new CanvasJS.Chart("chartContainer4", {
-	animationEnabled: true,
-	zoomEnabled: true,
-	title:{
-		text: "Weight of Trash Picked Up in Cleanups vs Total Time Spent (Group)",
-		fontSize: 30
-	},
-	axisX: {
-		title:"Time (hrs)",
-		titleFontSize: 20,
-		labelFontSize: 16,
-		minimum: 0
-	},
-	axisY:{
-		title: "Weight of Trash (lbs)",
-		includeZero: true,
-		titleFontSize: 20,
-		labelFontSize: 16,
-		minimum: 0
-	},
-        data: [ 
-		{{ chart_group }} 
-	]
-});
-chart4.render();
-calculateTrendLine4(chart4);
-    function calculateTrendLine4(chart4){
-        const totalPoints = chart4.data[0].dataPoints.concat({{ trend_line_group }});
-        var a, b, c, d, e, slope, yIntercept;
-        var xSum = 0, ySum = 0, xySum = 0, xSquare = 0, dpsLength = totalPoints.length;
-        for(var i = 0; i < dpsLength; i++)
-            xySum += (totalPoints[i].x * totalPoints[i].y);
-        a = xySum * dpsLength;
-        for(var i = 0; i < dpsLength; i++){
-            xSum += totalPoints[i].x;
-            ySum += totalPoints[i].y;
-        }
-        b = xSum * ySum; 
-        for(var i = 0; i < dpsLength; i++)
-            xSquare += Math.pow(totalPoints[i].x, 2);
-        c = dpsLength * xSquare;
-        d = Math.pow(xSum, 2);
-        slope = (a-b)/(c-d);
-        e = slope * xSum;
-        yIntercept = (ySum - e) / dpsLength;
-        var startPoint = getTrendLinePoint(0.0, slope, yIntercept);
-        var endPoint = getTrendLinePoint({{ end_point }}, slope, yIntercept);
-        chart4.addTo("data",{
-            type: "line", //Line series showing trend
-            markerSize: 0,
-            dataPoints: [startPoint, endPoint]
-        });
+    function toggleDataSeries(e) {
+      if (typeof e.dataSeries.visible === "undefined" || e.dataSeries.visible) {
+        e.dataSeries.visible = false;
+      } else {
+        e.dataSeries.visible = true;
+      }
+      histogram.render();
     }
-	function getTrendLinePoint(x, slope, intercept){
-return {x: x, y: ((slope * x) + intercept)};
-}
-}
+    function getTrendLinePoint(x, slope, intercept) {
+      return { x: x, y: slope * x + intercept };
+    }
+  };
 </script>
-{% endblock %}
-
-{% block title %}
-Statistics
-{% endblock %}
-
-{% block content %}
-    <div id="blue-bg">
-      <table id="chart">
-        <caption id="caption">WATERSHED BRIGADE CUMALATIVE CLEAN-UP CHART {{ year }}</caption>
-        <tr>
-          <th id="month-heading" class="chart-headings">MONTH</th>
-          <th class="chart-headings" id="gradient-one"># OF SITES CLEANED</th>
-          <th class="chart-headings" id="gradient-two"># OF VOLUNTEERS</th>
-          <th class="chart-headings" id="gradient-three">TOTAL LBS OF TRASH</th>
-        </tr>
-        {{ table }}
-      </table>
-    </div>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <div id="chartContainer2" style="height: 370px; width: 80%;"></div>
-    <div id="chartContainer" style="height: 370px; width: 80%;"></div>
-    <div id="chartContainer3" style="height: 370px; width: 80%;"></div>
-    <div id="chartContainer4" style="height: 370px; width: 80%;"></div>
+{% endblock %} {% block title %} Statistics {% endblock %} {% block content %}
+<div id="blue-bg">
+  <table id="chart">
+    <caption id="caption">
+      WATERSHED BRIGADE CUMALATIVE CLEAN-UP CHART
+    </caption>
+    <tr>
+      <th id="month-heading" class="chart-headings">MONTH</th>
+      <th class="chart-headings" id="gradient-one"># OF SITES CLEANED</th>
+      <th class="chart-headings" id="gradient-two"># OF VOLUNTEERS</th>
+      <th class="chart-headings" id="gradient-three">TOTAL LBS OF TRASH</th>
+    </tr>
+    {{ table }}
+  </table>
+</div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<div id="histogramContainer" style="height: 370px; width: 80%"></div>
+<div id="dotChartContainer" style="height: 370px; width: 80%"></div>
 {% endblock %}

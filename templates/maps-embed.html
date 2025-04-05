@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
     <title>Watershed Cleanup - Maps</title>
   </head>
   <body class="embed">
     <div id="map-overlay">
-      <iframe id="map-cleanups" scrolling="no" src="https://gmcdonald-sfg.github.io/sbck-watershed-brigade/index.html#__hrp=eyJtdXRlciI6ZmFsc2UsIndhaXRGb3JEb2N1bWVudEJvZHkiOnRydWUsIndhaXRGb3JEb2N1bWVudFJlYWR5IjpmYWxzZSwibm9QYXRjaGVzIjp0cnVlLCJ3aWR0aCI6IjEwMCUiLCJoZWlnaHQiOiIxMDAlIiwiZW5naW5lTmFtZSI6ImVuZ2luZS0wLjEuMCIsImZyYW1lTmFtZSI6ImVuZ2luZS0wLjEuMDoxNzI4NDIwMDc2In0="></iframe>
-      <div id="map-reports">Unfortunately, we no longer display reports on this map.</div>
+      <iframe
+        id="map-cleanups"
+        scrolling="no"
+        src="https://gmcdonald-sfg.github.io/sbck-watershed-brigade/index.html#__hrp=eyJtdXRlciI6ZmFsc2UsIndhaXRGb3JEb2N1bWVudEJvZHkiOnRydWUsIndhaXRGb3JEb2N1bWVudFJlYWR5IjpmYWxzZSwibm9QYXRjaGVzIjp0cnVlLCJ3aWR0aCI6IjEwMCUiLCJoZWlnaHQiOiIxMDAlIiwiZW5naW5lTmFtZSI6ImVuZ2luZS0wLjEuMCIsImZyYW1lTmFtZSI6ImVuZ2luZS0wLjEuMDoxNzI4NDIwMDc2In0="
+      ></iframe>
+      <div id="map-reports">
+        Unfortunately, we no longer display reports on this map.
+      </div>
       <span class="switcher switcher-1 no-select switcher-embed">
-        <input type="checkbox" id="switcher-1" class="no-select" checked>
+        <input type="checkbox" id="switcher-1" class="no-select" checked />
         <label for="switcher-1" class="no-select"></label>
       </span>
     </div>
@@ -22,19 +39,17 @@
       <div class="heading-two">
         <h3 class="heading-title">Cleanups</h3>
       </div>
-     <!--<div class="content">
+      <!--<div class="content">
         {{ checkboxes }}
       </div>-->
-    </div> 
+    </div>
     <div id="reports">
       <div class="heading-two">
         <h3 class="heading-title">Report Trash</h3>
       </div>
       <div class="content">
         <form action="/report" class="form-inline" method="POST">
-          <div class="form-group">
-            {{ location_question }}
-          </div>
+          <div class="form-group">{{ location_question }}</div>
           <div class="form-group">
             <label for="trash">Amount of Trash:</label>
             <select class="form-control" id="trash" name="trash">
@@ -45,13 +60,28 @@
           </div>
           <div class="form-group">
             <label for="comment">Description:</label>
-            <input type="text" class="form-control" id="comment" maxlength="1000" name="comment" required>
+            <input
+              type="text"
+              class="form-control"
+              id="comment"
+              maxlength="1000"
+              name="comment"
+              required
+            />
           </div>
-          <button type="submit" class="btn btn-default" {{ submit }}>Submit</button>
-          <input type="hidden" name="embed" value="true">
+          <button type="submit" class="btn btn-default" {{ submit }}>
+            Submit
+          </button>
+          <input type="hidden" name="embed" value="true" />
         </form>
         {{ report_limit }}
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSehM8lVXrqqBI8kfVq8XYNuhe1EQypdo26jKx0edlEH6YmF2Q/viewform" target="_blank" class="btn btn-warning" id="report-switch-embed">Resolve a Location</a>
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSehM8lVXrqqBI8kfVq8XYNuhe1EQypdo26jKx0edlEH6YmF2Q/viewform"
+          target="_blank"
+          class="btn btn-warning"
+          id="report-switch-embed"
+          >Resolve a Location</a
+        >
       </div>
     </div>
   </body>
